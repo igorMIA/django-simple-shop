@@ -1,0 +1,18 @@
+{% extends 'shop/wrapper.html' %}
+
+{% block content %}
+<h1>Категории</h1>
+<div class="container">
+ 	<div class="row">
+  	{% for cat in cats %}
+  	<a href="{% url 'category' category=cat.id %}" class="a-category">
+	    <div class="col-sm">
+	    	<img src="{{cat.image.url}}"  class="img-thumbnail category-image" alt="">
+			<p>{{cat.title}}</p>
+	    </div>
+	</a>
+    {% endfor %}
+ 	</div>
+</div>
+<p class="lead">Beatae aut vel ut assumenda autem. Maxime voluptas quis a aut suscipit et rerum. Iste vel rerum voluptatum qui incidunt ab odit omnis. Quis et id ea dignissimos ipsam nobis. Eveniet architecto consequuntur pariatur nulla aut culpa cum. Quia cum est quis qui autem vero id.</p>
+{% endblock %}

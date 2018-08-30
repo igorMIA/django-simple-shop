@@ -1,0 +1,29 @@
+{% extends 'shop/wrapper.html' %}
+
+{% block content %}
+<!-- добавить валюту -->
+<h1>{{site_title}}</h1>
+<div class="container">
+	<div class="row">
+	{% for product in products %}
+	    <div class="col-sm">
+	    	<a href="{% url 'product' title=product.title %}" class="a-category">
+	    	<img src="{{product.image.url}}"  class="img-thumbnail category-image" alt="">
+			<p class="category-text">{{product.title}}<br>{{product.price}} грн</p>
+			</a>
+			<form action="/cart/add/" method="post">
+	{% csrf_token %}
+  <div class="form-group">
+	<input class="form-control" type="hidden" value="{{product.id}}" name="product_id">
+  </div>
+  <div class="form-group">
+	<input class="form-control" type="hidden" name="count" value="1">
+  </div>
+  <button type="submit" class="btn btn-primary category-buy-btn btn-size">Купить</button>
+</form>
+	    </div>
+	
+	{% endfor %}
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'shop/wrapper.html' %}
+
+{% block content %}
+<div id="demo" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  <div class="carousel-inner">
+  {% for slide in slides %}
+    <div class="carousel-item {% cycle 'active' '' '' %}">
+      <img src="{{slide.image.url}}" width="1100" height="500">
+        <div class="carousel-caption">
+          <h3>{{slide.title}}</h3>
+          <p>{{slide.text}}</p>
+        </div>
+    </div>
+  {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+<p class="lead">Beatae aut vel ut assumenda autem. Maxime voluptas quis a aut suscipit et rerum. Iste vel rerum voluptatum qui incidunt ab odit omnis. Quis et id ea dignissimos ipsam nobis. Eveniet architecto consequuntur pariatur nulla aut culpa cum. Quia cum est quis qui autem vero id.</p>
+{% endblock %}
