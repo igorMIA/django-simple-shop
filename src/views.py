@@ -13,14 +13,14 @@ def index(request):
 
 def categories(request):
 	context = {}
-	context['cats'] = Category.objects.all()
+	context['cats'] = Category.objects.filter(is_published=True)
 	context['site_title'] = 'Категории'
 	return render(request, 'shop/categories.html', context)
 
 
 def cat(request, category):
 	context = {}
-	products = Goods.objects.filter(category=category)
+	products = Goods.objects.filter(category=category, is_published=True)
 	context['products'] = products
 	context['site_title'] = Category.objects.get(id=category).title
 	return render(request, 'shop/category.html', context)
