@@ -17,6 +17,7 @@ class Category(models.Model):
 class Goods(models.Model):
 	title = models.CharField(max_length=20)
 	is_published = models.BooleanField(default=True)
+	is_recommend = models.BooleanField(default=False)
 	category = models.ForeignKey('Category', on_delete=models.CASCADE)
 	price = models.FloatField()
 	image = models.FileField(upload_to='image/goods/')

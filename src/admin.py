@@ -3,7 +3,7 @@ from .models import Category, Goods, Carousel, OrderModel
 
 
 class GoodsAdmin(admin.ModelAdmin):
-	list_display = ('title', 'category', 'is_published')
+	list_display = ('title', 'category', 'is_published', 'is_recommend')
 	actions = ['make_published', 'un_published']
 
 	def make_published(self, request, queryset):

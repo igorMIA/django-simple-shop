@@ -1,7 +1,7 @@
 {% extends 'shop/wrapper.html' %}
 
 {% block content %}
-<div id="demo" class="carousel slide" data-ride="carousel">
+<div id="demo" class="carousel slide recommend" data-ride="carousel">
   <ul class="carousel-indicators">
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
@@ -24,6 +24,19 @@
   <a class="carousel-control-next" href="#demo" data-slide="next">
     <span class="carousel-control-next-icon"></span>
   </a>
+</div>
+<h2>Рекомендуем</h2>
+<div class="container">
+  <div class="row">
+  {% for product in recommend %}
+      <div class="col-sm">
+        <a href="{% url 'product' title=product.title %}" class="a-category">
+        <img src="{{product.image.url}}"  class="img-thumbnail category-image" alt="">
+      <p class="category-text">{{product.title}}<br>{{product.price}} грн</p>
+      </a>
+      </div>
+  {% endfor %}
+  </div>
 </div>
 <p class="lead">Beatae aut vel ut assumenda autem. Maxime voluptas quis a aut suscipit et rerum. Iste vel rerum voluptatum qui incidunt ab odit omnis. Quis et id ea dignissimos ipsam nobis. Eveniet architecto consequuntur pariatur nulla aut culpa cum. Quia cum est quis qui autem vero id.</p>
 {% endblock %}

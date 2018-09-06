@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 def index(request):
 	context = {}
 	context['slides'] = Carousel.objects.all()
+	context['recommend'] = Goods.objects.filter(is_recommend=True)
 	context['site_title'] = 'Главная'
 	return render(request, 'shop/index.html', context)
 
