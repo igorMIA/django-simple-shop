@@ -1,0 +1,208 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-08 14:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\shop\admin.py:13
+msgid "one_product_success"
+msgstr ""
+
+#: .\shop\admin.py:15
+msgid "few_products_success"
+msgstr ""
+
+#: .\shop\admin.py:16
+msgid "mark_products_published"
+msgstr ""
+
+#: .\shop\admin.py:21
+msgid "un_one_product_success"
+msgstr ""
+
+#: .\shop\admin.py:23
+msgid "un_few_products_success"
+msgstr ""
+
+#: .\shop\admin.py:24
+msgid "un_mark_products_published"
+msgstr ""
+
+#: .\shop\admin.py:33
+msgid "one_category_success"
+msgstr ""
+
+#: .\shop\admin.py:35
+msgid "few_categories_success"
+msgstr ""
+
+#: .\shop\admin.py:36
+msgid "mark_categories_published"
+msgstr ""
+
+#: .\shop\admin.py:41
+msgid "un_one_category_success"
+msgstr ""
+
+#: .\shop\admin.py:43
+msgid "un_few_categories_success"
+msgstr ""
+
+#: .\shop\admin.py:44
+msgid "un_mark_categories_published"
+msgstr ""
+
+#: .\shop\models.py:6 .\shop\models.py:19 .\shop\models.py:37
+#: .\shop\templates\shop\cart.html:8
+msgid "title"
+msgstr ""
+
+#: .\shop\models.py:7 .\shop\models.py:20
+msgid "is_published"
+msgstr ""
+
+#: .\shop\models.py:8 .\shop\models.py:24 .\shop\models.py:39
+msgid "image"
+msgstr ""
+
+#: .\shop\models.py:11 .\shop\models.py:22
+#: .\shop\templates\shop\product.html:6
+msgid "category"
+msgstr ""
+
+#: .\shop\models.py:12 .\shop\templates\shop\categories.html:5
+#: .\shop\templates\shop\wrapper.html:24 .\shop\views.py:19
+msgid "categories"
+msgstr ""
+
+#: .\shop\models.py:21
+msgid "is_recommend"
+msgstr ""
+
+#: .\shop\models.py:23 .\shop\templates\shop\cart.html:9
+msgid "price"
+msgstr ""
+
+#: .\shop\models.py:25 .\shop\models.py:38
+msgid "text"
+msgstr ""
+
+#: .\shop\models.py:28 .\shop\views.py:97
+msgid "product"
+msgstr ""
+
+#: .\shop\models.py:29 .\shop\models.py:54
+msgid "products"
+msgstr ""
+
+#: .\shop\models.py:42
+msgid "slide"
+msgstr ""
+
+#: .\shop\models.py:43
+msgid "slides"
+msgstr ""
+
+#: .\shop\models.py:50 .\shop\templates\shop\order.html:10 .\shop\views.py:101
+msgid "name"
+msgstr ""
+
+#: .\shop\models.py:51 .\shop\templates\shop\order.html:13 .\shop\views.py:101
+msgid "surname"
+msgstr ""
+
+#: .\shop\models.py:52 .\shop\templates\shop\order.html:17 .\shop\views.py:101
+msgid "email"
+msgstr ""
+
+#: .\shop\models.py:53 .\shop\templates\shop\order.html:23 .\shop\views.py:101
+msgid "tel"
+msgstr ""
+
+#: .\shop\models.py:57 .\shop\models.py:61 .\shop\views.py:94
+msgid "order"
+msgstr ""
+
+#: .\shop\models.py:58
+msgid "orders"
+msgstr ""
+
+#: .\shop\templates\shop\cart.html:10 .\shop\templates\shop\product.html:16
+#: .\shop\views.py:97
+msgid "count"
+msgstr ""
+
+#: .\shop\templates\shop\cart.html:25
+msgid "total"
+msgstr ""
+
+#: .\shop\templates\shop\cart.html:32
+msgid "clear"
+msgstr ""
+
+#: .\shop\templates\shop\cart.html:34 .\shop\templates\shop\cart.html:36
+msgid "checkout"
+msgstr ""
+
+#: .\shop\templates\shop\category.html:23
+#: .\shop\templates\shop\product.html:18
+msgid "buy"
+msgstr ""
+
+#: .\shop\templates\shop\index.html:29
+msgid "recommend"
+msgstr ""
+
+#: .\shop\templates\shop\order.html:19
+msgid "check_email"
+msgstr ""
+
+#: .\shop\templates\shop\order.html:25
+msgid "check_tel"
+msgstr ""
+
+#: .\shop\templates\shop\order.html:41
+msgid "submit"
+msgstr ""
+
+#: .\shop\templates\shop\wrapper.html:23 .\shop\views.py:12
+msgid "main"
+msgstr ""
+
+#: .\shop\templates\shop\wrapper.html:25 .\shop\views.py:54
+msgid "cart"
+msgstr ""
+
+#: .\shop\views.py:81
+msgid "make_order"
+msgstr ""
+
+#: .\shop\views.py:89
+msgid "success_order"
+msgstr ""
+
+#: .\shop\views.py:100
+msgid "new_order"
+msgstr ""
+
+#: .\shop\views.py:101
+msgid "client"
+msgstr ""
+
+#: .\shop\views.py:107
+msgid "error_order"
+msgstr ""

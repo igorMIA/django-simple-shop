@@ -2,20 +2,21 @@ from django.shortcuts import render, redirect
 from .models import Category, Goods, Carousel, OrderModel
 from .forms import AddCart, Order
 from django.core.mail import send_mail
+from django.utils.translation import gettext as _
 
 
 def index(request):
 	context = {}
 	context['slides'] = Carousel.objects.all()
 	context['recommend'] = Goods.objects.filter(is_recommend=True)
-	context['site_title'] = 'Главная'
+	context['site_title'] = _('main')
 	return render(request, 'shop/index.html', context)
 
 
 def categories(request):
 	context = {}
 	context['cats'] = Category.objects.filter(is_published=True)
-	context['site_title'] = 'Категории'
+	context['site_title'] = _('categories')
 	return render(request, 'shop/categories.html', context)
 
 
@@ -50,7 +51,7 @@ def cart(request):
 		sum += product.price * count
 	context['sum'] = sum
 	context['products'] = zip(products, counts)
-	context['site_title'] = 'Корзина'
+	context['site_title'] = _('cart')
 	return render(request, 'shop/cart.html', context)
 
 
@@ -77,7 +78,7 @@ def cart_clear(request):
 
 def order(request):
 	context = {}
-	context['site_title'] = 'Сделать заказ'
+	context['site_title'] = _('make_order')
 	return render(request, 'shop/order.html', context)
 
 def order_make(request):
@@ -85,23 +86,23 @@ def order_make(request):
 	if request.method == 'POST':
 		form = Order(request.POST)
 		if form.is_valid():
-			context['site_title'] = 'Успешный заказ'
+			context['site_title'] = _('success_order')
 			name = form.cleaned_data['name']
 			surname = form.cleaned_data['surname']
 			email = form.cleaned_data['email']
 			tel = form.cleaned_data['tel']
-			out = 'Заказ:\n'
+			out = '{}:\n'.format(_('order'))
 			for product_id, count in zip(request.session['cart']['product_id'], request.session['cart']['count']):
 				product = Goods.objects.get(id=product_id)
-				out += 'Товар: {} грн Количество: {}\n'.format(product.title, count)
+				out += '{}: {} грн {}: {}\n'.format(_('product'), product.title, _('count'), count)
 			OrderModel.objects.create(name=name, surname=surname, email=email, tel=tel, products=out)
 			send_mail(
-				'Поступил новый заказ',
-				'Клиент:\nИмя: {}\nФамилия: {}\nТелефон: {}\nПочта: {}\n'.format(name, surname, email, tel) + out,
+				_('new_order'),
+				'{}:\n{}: {}\n{}: {}\n{}: {}\n{}: {}\n'.format(_('client'), _('name'), name, _('surname'), surname, _('tel'), tel, _('email'), email) + out,
 				'service@shop.com',
 				['admin@shop.com'],
 				fail_silently=False,
 			)
 		else:
-			context['site_title'] = 'Ошибка заказа'
+			context['site_title'] = _('error_order')
 	return render(request, 'shop/order_status.html', context)

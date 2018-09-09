@@ -1,27 +1,28 @@
 {% extends 'shop/wrapper.html' %}
 
 {% block content %}
+{% load i18n %}
 <h1>{{site_title}}</h1>
 <form class="needs-validation" action="make/" method="post" novalidate>
 {% csrf_token %}
   <div class="form-row">
     <div class="col-md-6 mb-3">
-      <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Имя" required>
+      <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="{% trans 'name' %}" required>
     </div>
     <div class="col-md-6 mb-3">
-      <input type="text" name="surname" class="form-control" id="validationCustom02" placeholder="Фамилия" required>
+      <input type="text" name="surname" class="form-control" id="validationCustom02" placeholder="{% trans 'surname' %}" required>
     </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
-      <input type="email" name="email" class="form-control" id="validationCustom03" placeholder="Почта" required>
+      <input type="email" name="email" class="form-control" id="validationCustom03" placeholder="{% trans 'email' %}" required>
       <div class="invalid-feedback">
-        Укажите правильную почту.
+        {% trans 'check_email' %}
       </div>
     </div>
     <div class="col-md-6 mb-3">
-      <input type="tel" name="tel" class="form-control" id="validationCustom06" placeholder="Телефон" required>
+      <input type="tel" name="tel" class="form-control" id="validationCustom06" placeholder="{% trans 'tel' %}" required>
       <div class="invalid-feedback">
-        Укажите номер телефона в формате: +380952223344.
+        {% trans 'check_tel' %}
       </div>
     </div>
   </div>
@@ -37,7 +38,7 @@
     </div>
   </div> -->
   <div class="col-md-1 mb-3">
-  <button class="btn btn-primary btn-size" type="submit">Отправить</button>
+  <button class="btn btn-primary btn-size" type="submit">{% trans 'submit' %}</button>
 </div>
 </form>
 <script>

@@ -1,8 +1,9 @@
 {% extends 'shop/wrapper.html' %}
 
 {% block content %}
+{% load i18n %}
 <h1>{{product.title}}</h1>
-<p>Категория: <a href="{% url 'category' category=product.category.id %}">{{product.category}}</a></p>
+<p>{% trans 'category' %}: <a href="{% url 'category' category=product.category.id %}">{{product.category}}</a></p>
 <h4 class="price">{{product.price}} грн</h4>
 <div>
 	<img src="{{product.image.url}}"  class="img-fluid product-image" alt="">
@@ -12,9 +13,9 @@
 	<input class="form-control" type="hidden" value="{{product.id}}" name="product_id">
   </div>
   <div class="form-group">
-	<input class="form-control" type="number" min="1" step="1" placeholder="Количество" name="count">
+	<input class="form-control" type="number" min="1" step="1" placeholder="{% trans 'count' %}" name="count">
   </div>
-  <button type="submit" class="btn btn-primary btn-size">Купить</button>
+  <button type="submit" class="btn btn-primary btn-size">{% trans 'buy' %}</button>
 </form>
 </div>
 <p>{{product.text}}</p>

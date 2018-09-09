@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Category, Goods, Carousel, OrderModel
+from django.utils.translation import gettext_lazy as _
 
 
 class GoodsAdmin(admin.ModelAdmin):
@@ -9,18 +10,18 @@ class GoodsAdmin(admin.ModelAdmin):
 	def make_published(self, request, queryset):
 		status = queryset.update(is_published=True)
 		if status == 1:
-			self.message_user(request, '1 product was successfully marked as published')
+			self.message_user(request, _('one_product_success'))
 		else:
-			self.message_user(request, '{} products were successfully marked as published'.format(status))
-	make_published.short_description = 'Mark selected products as published'
+			self.message_user(request, '{} {}'.format(status, _('few_products_success')))
+	make_published.short_description = _('mark_products_published')
 
 	def un_published(self, request, queryset):
 		status = queryset.update(is_published=False)
 		if status == 1:
-			self.message_user(request, '1 product was successfully marked as un published')
+			self.message_user(request, _('un_one_product_success'))
 		else:
-			self.message_user(request, '{} products were successfully marked as un published'.format(status))
-	un_published.short_description = 'Mark selected products as un published'
+			self.message_user(request, '{} {}'.format(status, _('un_few_products_success')))
+	un_published.short_description = _('un_mark_products_published')
 
 class CategoryAdmin(admin.ModelAdmin):
 	list_display = ('title', 'is_published')
@@ -29,18 +30,18 @@ class CategoryAdmin(admin.ModelAdmin):
 	def make_published(self, request, queryset):
 		status = queryset.update(is_published=True)
 		if status == 1:
-			self.message_user(request, '1 category was successfully marked as published')
+			self.message_user(request, _('one_category_success'))
 		else:
-			self.message_user(request, '{} products were successfully marked as published'.format(status))
-	make_published.short_description = 'Mark selected products as published'
+			self.message_user(request, '{} {}'.format(status, _('few_categories_success')))
+	make_published.short_description = _('mark_categories_published')
 
 	def un_published(self, request, queryset):
 		status = queryset.update(is_published=False)
 		if status == 1:
-			self.message_user(request, '1 category was successfully marked as un published')
+			self.message_user(request, _('un_one_category_success'))
 		else:
-			self.message_user(request, '{} categories were successfully marked as un published'.format(status))
-	un_published.short_description = 'Mark selected categories as un published'
+			self.message_user(request, '{} {}'.format(status, _('un_few_categories_success')))
+	un_published.short_description = _('un_mark_categories_published')
 
 
 admin.site.register(Category, CategoryAdmin)

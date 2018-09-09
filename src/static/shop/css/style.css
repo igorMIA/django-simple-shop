@@ -121,3 +121,7 @@ body {
 .recommend {
   margin-bottom: 10px;
 }
+
+.lang {
+  width: 15%;
+}

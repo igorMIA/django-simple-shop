@@ -1,6 +1,7 @@
 {% extends 'shop/wrapper.html' %}
 
 {% block content %}
+{% load i18n %}
 <!-- добавить валюту -->
 <h1>{{site_title}}</h1>
 <div class="container">
@@ -19,7 +20,7 @@
   <div class="form-group">
 	<input class="form-control" type="hidden" name="count" value="1">
   </div>
-  <button type="submit" class="btn btn-primary category-buy-btn btn-size">Купить</button>
+  <button type="submit" class="btn btn-primary category-buy-btn btn-size">{% trans 'buy' %}</button>
 </form>
 	    </div>
 	

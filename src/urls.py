@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 
@@ -14,6 +14,8 @@ urlpatterns = [
 	path('cart/clear/', views.cart_clear, name='cart_clear'),
 	path('order/', views.order, name='order'),
 	path('order/make/', views.order_make, name='order_make'),
-] 
+	path('i18n/', include('django.conf.urls.i18n'))
+]
 
+# for static in dev mod
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,12 +1,13 @@
 {% extends 'shop/wrapper.html' %}
 
 {% block content %}
+{% load i18n %}
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Название</th>
-      <th scope="col">Цена</th>
-      <th scope="col">Количество</th>
+      <th scope="col">{% trans 'title' %}</th>
+      <th scope="col">{% trans 'price' %}</th>
+      <th scope="col">{% trans 'count' %}</th>
     </tr>
   </thead>
   <tbody>
@@ -21,18 +22,18 @@
    <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col">Общая стоимость:</th>
+      <th scope="col">{% trans 'total' %}:</th>
       <th scope="col">{{sum}} грн</th>
     </tr>
   </thead>
   <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col"><a href="{% url 'cart_clear' %}" class="btn btn-primary btn-size">Очистить корзину</a></th>
+      <th scope="col"><a href="{% url 'cart_clear' %}" class="btn btn-primary btn-size">{% trans 'clear' %}</a></th>
       {% if sum > 0 %}
-      <th scope="col"><a href="{% url 'order' %}" class="btn btn-primary btn-size">Оформить</a></th>
+      <th scope="col"><a href="{% url 'order' %}" class="btn btn-primary btn-size">{% trans 'checkout' %}</a></th>
       {% elif sum == 0 %}
-      <th scope="col"><a href="#" class="btn btn-secondary btn-size">Оформить</a></th>
+      <th scope="col"><a href="#" class="btn btn-secondary btn-size">{% trans 'checkout' %}</a></th>
       {% endif %}
     </tr>
   </thead>
