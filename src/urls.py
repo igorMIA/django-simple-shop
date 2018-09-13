@@ -14,8 +14,10 @@ urlpatterns = [
 	path('cart/clear/', views.cart_clear, name='cart_clear'),
 	path('order/', views.order, name='order'),
 	path('order/make/', views.order_make, name='order_make'),
-	path('i18n/', include('django.conf.urls.i18n'))
+	path('i18n/', include('django.conf.urls.i18n')),
+	path('search/', views.MySearchView.as_view(), name='search_view'),
 ]
 
 # for static in dev mod
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

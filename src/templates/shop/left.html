@@ -1,0 +1,21 @@
+{% load i18n %}
+<div class="col-12 col-sm-3">
+  <div class="card bg-light mb-3">
+    <div class="card-header bg-secondary text-white text-uppercase"><i class="fa fa-list"></i> {% trans 'categories' %}</div>
+    <ul class="list-group category_block">
+      {% for cat in categories %}
+      <li class="list-group-item"><a href="{% url 'category' category=cat.id %}">{{cat.title}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% if last_product %}
+  <div class="card bg-light mb-3">
+    <div class="card-header bg-secondary text-white text-uppercase">{% trans 'last_product' %}</div>
+    <div class="card-body">
+      <img class="img-fluid" src="{{last_product.image.url}}" />
+      <h5 class="card-title center"><a href="{% url 'product' title=last_product.title %}">{{last_product.title}}</h5></a>
+      <p class="bloc_left_price">{{last_product.price|floatformat}} грн</p>
+    </div>
+  </div>
+  {% endif %}
+</div>

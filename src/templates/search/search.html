@@ -1,0 +1,49 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+{% load i18n%}
+<div class="container">
+  <h1></h1>
+  <div class="row">
+    {% include 'shop/left.html' %}
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans 'main' %}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{% trans 'search' %}</li>
+        </ol>
+      </nav>
+      <div class="row">
+        {% for product in object_list%}
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <img class="card-img-top" src="{{product.object.image.url}}" alt="">
+            <div class="card-body">
+              <h4 class="card-title"><a href="{% url 'product' title=product.title %}" title="View Product">{{product.title}}</a></h4>
+              <p class="card-text"></p>
+              <div class="row">
+                <div class="col">
+                  <p class="btn btn-danger btn-block">{{product.object.price|floatformat}} грн</p>
+                </div>
+                <div class="col">
+                  <form action="/cart/add/" method="post">
+                   {% csrf_token %}
+                   <input class="form-control" type="hidden" value="{{product.object.id}}" name="product_id">
+                   <input class="form-control" type="hidden" name="count" value="1">
+                   <button type="submit" class="btn btn-success btn-block">{% trans 'buy' %}</button>
+                 </form>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       {% empty %}
+       <div class="col-12 col-md-6 col-lg-4">
+         <p>{% trans 'no_result' %}.</p>
+       </div>
+       {% endfor %}
+     </div>
+   </div>
+ </div>
+</div>
+{% endblock %}

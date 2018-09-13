@@ -19,6 +19,7 @@ class Goods(models.Model):
 	title = models.CharField(verbose_name = _('title'), max_length=20)
 	is_published = models.BooleanField(verbose_name = _('is_published'), default=True)
 	is_recommend = models.BooleanField(verbose_name = _('is_recommend'), default=False)
+	is_top = models.BooleanField(verbose_name = _('is_top'), default=False)
 	category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name = _('category'))
 	price = models.FloatField(verbose_name = _('price'))
 	image = models.FileField(verbose_name = _('image'), upload_to='image/goods/')

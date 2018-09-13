@@ -1,19 +1,54 @@
-{% extends 'shop/wrapper.html' %}
+{% extends 'shop/base.html' %}
 
 {% block content %}
 {% load i18n %}
-<h1>{% trans 'categories' %}</h1>
 <div class="container">
- 	<div class="row">
-  	{% for cat in cats %}
-  	<a href="{% url 'category' category=cat.id %}" class="a-category">
-	    <div class="col-sm">
-	    	<img src="{{cat.image.url}}"  class="img-thumbnail category-image" alt="">
-			<p>{{cat.title}}</p>
-	    </div>
-	</a>
-    {% endfor %}
- 	</div>
+	<h1></h1>
+    <div class="row">
+        {% include 'shop/left.html' %}
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans 'main' %}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{site_title}}</li>
+              </ol>
+          </nav>
+          <div class="row">
+             {% for category in categories %}
+             <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{category.image.url}}" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="{% url 'category' category=category.id %}" title="View Product">{{category.title}}</a></h4>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if categories.paginator.num_pages > 1 %}
+            <div class="col-12">
+              <nav aria-label="...">
+                <ul class="pagination">
+                  {% if categories.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{categories.previous_page_number}}" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="?page={{categories.previous_page_number}}">{{categories.previous_page_number}}</a></li>
+                {% endif %}
+                <li class="page-item active">
+                    <a class="page-link bg-page" href="#">{{categories.number}} <span class="sr-only">(current)</span></a>
+                </li>
+                {% if categories.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{categories.next_page_number}}">{{ categories.next_page_number }}</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{categories.next_page_number}}"><span aria-hidden="true">&raquo;</span></a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
 </div>
-<p class="lead">Beatae aut vel ut assumenda autem. Maxime voluptas quis a aut suscipit et rerum. Iste vel rerum voluptatum qui incidunt ab odit omnis. Quis et id ea dignissimos ipsam nobis. Eveniet architecto consequuntur pariatur nulla aut culpa cum. Quia cum est quis qui autem vero id.</p>
+</div>
+</div>
 {% endblock %}

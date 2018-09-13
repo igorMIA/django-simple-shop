@@ -1,43 +1,59 @@
-{% extends 'shop/wrapper.html' %}
+{% extends 'shop/base.html' %}
 
 {% block content %}
 {% load i18n %}
-<div id="demo" class="carousel slide recommend" data-ride="carousel">
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
   <div class="carousel-inner">
-  {% for slide in slides %}
+    {% for slide in slides %}
     <div class="carousel-item {% cycle 'active' '' '' %}">
-      <img src="{{slide.image.url}}" width="1100" height="500">
-        <div class="carousel-caption">
-          <h3>{{slide.title}}</h3>
+      <img class="first-slide" src="{{slide.image.url}}" alt="">
+      <div class="container">
+        <div class="carousel-caption text-left">
+          <h1>{{slide.title}}</h1>
           <p>{{slide.text}}</p>
         </div>
-    </div>
-  {% endfor %}
-  </div>
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
-<h2>{% trans 'recommend' %}</h2>
-<div class="container">
-  <div class="row">
-  {% for product in recommend %}
-      <div class="col-sm">
-        <a href="{% url 'product' title=product.title %}" class="a-category">
-        <img src="{{product.image.url}}"  class="img-thumbnail category-image" alt="">
-      <p class="category-text">{{product.title}}<br>{{product.price}} грн</p>
-      </a>
       </div>
-  {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<div class="container marketing">
+  <h1 class="recommend-title"><i class="fa fa-heart"></i>{% trans 'popular' %}</h1>
+  <div class="row ">
+    {% for product in top %}
+    <div class="col-lg-3">
+      <img src="{{product.image.url}}" alt="" width="140" height="140">
+      <h2>{{product.title}}</h2>
+      <p class="price_color">{{product.price}} грн</p>
+      <p><a class="btn btn-success btn-block" href="{% url 'product' title=product.title %}" role="button">{% trans 'show' %}</a></p>
+    </div>
+    {% endfor %}
   </div>
 </div>
-<p class="lead">Beatae aut vel ut assumenda autem. Maxime voluptas quis a aut suscipit et rerum. Iste vel rerum voluptatum qui incidunt ab odit omnis. Quis et id ea dignissimos ipsam nobis. Eveniet architecto consequuntur pariatur nulla aut culpa cum. Quia cum est quis qui autem vero id.</p>
+<div class="container marketing">
+  <h1 class="recommend-title"><i class="fa fa-star"></i>{% trans 'recommend' %}</h1>
+  <div class="row ">
+    {% for product in recommend %}
+    <div class="col-lg-3">
+      <img src="{{product.image.url}}" alt="" width="140" height="140">
+      <h2>{{product.title}}</h2>
+      <p class="price_color">{{product.price}} грн</p>
+      <p><a class="btn btn-success btn-block" href="{% url 'product' title=product.title %}" role="button">{% trans 'show' %}</a></p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

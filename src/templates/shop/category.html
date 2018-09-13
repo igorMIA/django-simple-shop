@@ -1,30 +1,69 @@
-{% extends 'shop/wrapper.html' %}
+{% extends 'shop/base.html' %}
 
 {% block content %}
 {% load i18n %}
 <!-- добавить валюту -->
-<h1>{{site_title}}</h1>
 <div class="container">
-	<div class="row">
-	{% for product in products %}
-	    <div class="col-sm">
-	    	<a href="{% url 'product' title=product.title %}" class="a-category">
-	    	<img src="{{product.image.url}}"  class="img-thumbnail category-image" alt="">
-			<p class="category-text">{{product.title}}<br>{{product.price}} грн</p>
-			</a>
-			<form action="/cart/add/" method="post">
-	{% csrf_token %}
-  <div class="form-group">
-	<input class="form-control" type="hidden" value="{{product.id}}" name="product_id">
+  <h1></h1>
+  <div class="row">
+    {% include 'shop/left.html' %}
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans 'main' %}</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'categories' %}">{% trans 'categories' %}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{site_title}}</li>
+        </ol>
+      </nav>
+      <div class="row">
+       {% for product in products %}
+       <div class="col-12 col-md-6 col-lg-4">
+        <div class="card">
+          <img class="card-img-top" src="{{product.image.url}}" alt="">
+          <div class="card-body">
+            <h4 class="card-title"><a href="{% url 'product' title=product.title %}" title="View Product">{{product.title}}</a></h4>
+            <p class="card-text"></p>
+            <div class="row">
+              <div class="col">
+                <p class="btn btn-danger btn-block">{{product.price|floatformat}} грн</p>
+              </div>
+              <div class="col">
+                <form action="/cart/add/" method="post">
+                 {% csrf_token %}
+                 <input class="form-control" type="hidden" value="{{product.id}}" name="product_id">
+                 <input class="form-control" type="hidden" name="count" value="1">
+                 <button type="submit" class="btn btn-success btn-block">{% trans 'buy' %}</button>
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     {% endfor %}
+     {% if products.paginator.num_pages > 1 %}
+     <div class="col-12">
+      <nav aria-label="...">
+        <ul class="pagination">
+          {% if products.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{products.previous_page_number}}" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="?page={{products.previous_page_number}}">{{products.previous_page_number}}</a></li>
+          {% endif %}
+          <li class="page-item active">
+            <a class="page-link bg-page" href="#">{{products.number}} <span class="sr-only">(current)</span></a>
+          </li>
+          {% if products.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}">{{ products.next_page_number }}</a></li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{products.next_page_number}}"><span aria-hidden="true">&raquo;</span></a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+    {% endif %}
   </div>
-  <div class="form-group">
-	<input class="form-control" type="hidden" name="count" value="1">
-  </div>
-  <button type="submit" class="btn btn-primary category-buy-btn btn-size">{% trans 'buy' %}</button>
-</form>
-	    </div>
-	
-	{% endfor %}
-	</div>
+</div>
 </div>
 {% endblock %}

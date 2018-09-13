@@ -1,41 +1,55 @@
-{% extends 'shop/wrapper.html' %}
+{% extends 'shop/base.html' %}
 
 {% block content %}
 {% load i18n %}
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">{% trans 'title' %}</th>
-      <th scope="col">{% trans 'price' %}</th>
-      <th scope="col">{% trans 'count' %}</th>
-    </tr>
-  </thead>
-  <tbody>
-  	{% for product, count in products %}	
-    <tr>
-      <td>{{product.title}}</td>
-      <td><span class=price>{{product.price}} грн</span></td>
-      <td>{{count}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-   <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">{% trans 'total' %}:</th>
-      <th scope="col">{{sum}} грн</th>
-    </tr>
-  </thead>
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col"><a href="{% url 'cart_clear' %}" class="btn btn-primary btn-size">{% trans 'clear' %}</a></th>
-      {% if sum > 0 %}
-      <th scope="col"><a href="{% url 'order' %}" class="btn btn-primary btn-size">{% trans 'checkout' %}</a></th>
-      {% elif sum == 0 %}
-      <th scope="col"><a href="#" class="btn btn-secondary btn-size">{% trans 'checkout' %}</a></th>
-      {% endif %}
-    </tr>
-  </thead>
-</table>
+<div class="container">
+  <h1></h1>
+  <div class="row">
+    {% include 'shop/left.html' %}
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans 'main' %}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{% trans 'cart' %}</li>
+        </ol>
+      </nav>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">{% trans 'title' %}</th>
+            <th scope="col">{% trans 'price' %}</th>
+            <th scope="col">{% trans 'count' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+         {% for product, count in products %}	
+         <tr>
+          <td>{{product.title}}</td>
+          <td><span class=price>{{product.price}} грн</span></td>
+          <td>{{count}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">{% trans 'total' %}:</th>
+          <th scope="col">{{sum}} грн</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"><a href="{% url 'cart_clear' %}" class="btn btn-primary btn-sm">{% trans 'clear' %}</a></th>
+          {% if sum > 0 %}
+          <th scope="col"><a href="{% url 'order' %}" class="btn btn-success btn-sm">{% trans 'checkout' %}</a></th>
+          {% elif sum == 0 %}
+          <th scope="col"><a href="#" class="btn btn-success btn-sm disabled">{% trans 'checkout' %}</a></th>
+          {% endif %}
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+</div>
 {% endblock %}
